@@ -37,12 +37,12 @@ def send_troubleshooting_email(ticketnumber, requester_email):
     from email.mime.application import MIMEApplication
     import os
 
-    # SMTP configuration
+    # Zimbra SMTP configuration
     smtp_server = "zimbra-smtp.concentrix.com"
     smtp_port = 465
     user_email = "itvn_noreply@concentrix.com"
-    user_password = "2KUFjtoDhESaaZP"
-    cc_email = "itvn@concentrix.com"
+    user_password = "input_your_password_here"  # Replace with the actual password or use environment variables for security
+    cc_email = "input_email_you_want_to_cc"
     # Email content
     recipient_emails = [requester_email,
                         cc_email
@@ -77,7 +77,7 @@ def send_troubleshooting_email(ticketnumber, requester_email):
 
 
 def getticket_number(ticket):
-    excel_file_done = r"C:\Users\congthang.van\OneDrive - Concentrix Corporation\process_pending_ticket\set_pending_done.xlsx"
+    excel_file_done = r"C:\Users\congthang.van\OneDrive - Concentrix Corporation\process_pending_ticket\set_pending_done.xlsx" #input your path to your excel file
     # excel_file_done = r"C:\Users\ManageITVN\OneDrive - Concentrix Corporation\process_pending_ticket\set_pending_done.xlsx"
     wb_pending = load_workbook(excel_file_done)
     sheet = wb_pending.active
@@ -86,7 +86,7 @@ def getticket_number(ticket):
     last_row += 1
     wb_pending.save(excel_file_done)
     wb_pending.close()
-set_pending_file = r"C:\Users\congthang.van\OneDrive - Concentrix Corporation\process_pending_ticket\set_pending_new.xlsx"   
+set_pending_file = r"C:\Users\congthang.van\OneDrive - Concentrix Corporation\process_pending_ticket\set_pending_new.xlsx"   #input your
 set_pending_file_temp = set_pending_file + ".temp_check"
 def is_file_locked(file_path, temp_path):
     try:
@@ -162,10 +162,10 @@ for ticket in tickets:
         try:
 
             time.sleep(20)
-            onehub = 'Support-VNM-OneHub'
-            qtsc = 'Support-VNM-HoChiMinh'
-            flemington = 'Support-VNM-Flemington'
-            techvalley = 'Support-VNM-TechValley'
+            onehub = 'Support-VNM-OneHub' #adjust it to match with your group
+            qtsc = 'Support-VNM-HoChiMinh' #adjust it to match with your group
+            flemington = 'Support-VNM-Flemington' #adjust it to match with your group
+            techvalley = 'Support-VNM-TechValley' #adjust it to match with your group
             assign_group = driver.find_element(By.CLASS_NAME, 'search-item-layout__desc')
             if assign_group.text.find(onehub) ==0:
                 engineer = "Hoang Tuan Kiet Nguyen"
