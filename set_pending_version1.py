@@ -162,24 +162,26 @@ for ticket in tickets:
         try:
 
             time.sleep(20)
-            onehub = 'Support-VNM-OneHub' #adjust it to match with your group
-            qtsc = 'Support-VNM-HoChiMinh' #adjust it to match with your group
-            flemington = 'Support-VNM-Flemington' #adjust it to match with your group
-            techvalley = 'Support-VNM-TechValley' #adjust it to match with your group
+            onehub = 'OneHub'   #please change to your desired group
+            qtsc = 'HoChiMinh' #please change to your desired group
+            flemington = 'Flemington' #please change to your desired group
+            techvalley = 'TechValley' #please change to your desired group
             assign_group = driver.find_element(By.CLASS_NAME, 'search-item-layout__desc')
-            if assign_group.text.find(onehub) ==0:
-                engineer = "Hoang Tuan Kiet Nguyen"
-            elif assign_group.text.find(qtsc) ==0:
-                engineer = "Hoang Lam Cao"
-            elif assign_group.text.find(flemington) == 0:
-                engineer = "Quoc Khai Bui"
-            elif assign_group.text.find(techvalley) == 0:
-                engineer = "Hoang (Daniel ) Tran"
-            else:
-                engineer = "Hoang Lam Cao"
-        except Exception as e:
-            print(f"Failed to find assign engineer: {e}")
 
+            if onehub in assign_group.text:
+                engineer = "Hoang Tuan Kiet Nguyen"
+            elif qtsc in assign_group.text:
+                engineer = "Hoang Lam Cao"
+            elif flemington in assign_group.text:
+                engineer = "Quoc Khai Bui"
+            elif techvalley in assign_group.text:
+                engineer = "Hoang (Daniel ) Tran"   
+            else:
+                engineer = "Hoang Duy Bao Nguyen"
+            print(f'''assign engieener to {engineer}''')
+        except Exception as e:
+            print(f"Failed to find assign engineer: {e} - try to assign default engineer : Hoang Duy Bao Nguyen")
+            engineer = "Hoang Duy Bao Nguyen"
         ####Process the target link
         print(f'''assign engieener to {engineer}''')
         try:
